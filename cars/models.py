@@ -24,7 +24,7 @@ class Car(models.Model):
     factory_year = models.IntegerField(blank=True, null=True, verbose_name='Ano de fabricação')
     model_year = models.IntegerField(blank=True, null=True, verbose_name='Ano de modelo')
     plate = models.CharField(null=True, blank=True, max_length=10, verbose_name='Placa')
-    value = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2, verbose_name='Valor')
+    value = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Valor')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
     photo = models.ImageField(upload_to='cars/', blank=True, null=True)
