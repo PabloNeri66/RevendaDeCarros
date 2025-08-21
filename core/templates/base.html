@@ -77,7 +77,7 @@
         {% if user.is_authenticated %}
           <li> Olá, {{user.username|capfirst}}! </li>
           <li><a href="{% url 'new_car' %}"> Adicione uma Barca </a></li>
-          <li><a href="{% url 'cars_list' %}">Carros B.O</a></li>
+          <li><a href="{% url 'cars_list' %}">Carros</a></li>
           <li><a href="{% url 'logout' %}"> Sair </a></li>
         {% endif %}
         
