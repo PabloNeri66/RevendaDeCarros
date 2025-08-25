@@ -2,6 +2,21 @@ from django.db import models
 
 # Create your models here.
 
+class CarInventory(models.Model):
+    cars_count = models.IntegerField(verbose_name='Quantidade de carros')
+    cars_value = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Valor Dos Carros')
+    created_at =  models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
+    event_description = models.TextField(blank=True, null=True, verbose_name='Descricao do evento')
+
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'R${self.cars_value} para os {self.cars_count}.'
+
+
+
 class Brand(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, verbose_name='Nome')
@@ -15,8 +30,9 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
-    
-    
+
+
+
 class Car(models.Model):
     id = models.AutoField(primary_key=True)
     model = models.CharField(max_length=200, verbose_name='Modelo')
@@ -28,6 +44,8 @@ class Car(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
     photo = models.ImageField(upload_to='cars/', blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
+
 
 
     class Meta:
