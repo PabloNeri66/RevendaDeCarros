@@ -1,11 +1,21 @@
 {%extends 'base.html'%}
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" id= "meuForm">
         {% csrf_token %}
 
         <table>{{form.as_table}}</table>
 
-        <input type="submit" value="Cadastrar" class="btn btn-primary">
+        <input type="submit" value="Cadastrar" class="btn btn-primary" id="botaoSubmit" >
+        
         
     </form>
+
+
+    <script>
+        document.getElementById('meuForm').addEventListener('submit', function() {
+            // Desativa o botão para evitar clique duplo
+            document.getElementById('botaoSubmit').disabled = true;
+        });
+    </script>
+    
 {% endblock %}
