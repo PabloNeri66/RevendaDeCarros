@@ -1,6 +1,8 @@
 from django.db.models import Q
-from cars.models import Car
+from django.shortcuts import render
+from cars.models import Car, CarInventory
 from cars.forms import CarModelForm
+from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic import CreateView
 from django.views.generic.detail import DetailView
@@ -8,6 +10,8 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from django.utils import timezone
+from datetime import timedelta
 # Create your views here.
 
 
@@ -71,3 +75,41 @@ class CarDeleteView(DeleteView):
     model=Car
     template_name = 'car_delete.html'
     success_url = '/cars/'
+
+
+
+class CarGraphView(View):
+    def get(self, request, **kwargs):
+
+        today = timezone.now().date()
+        last_7_days = [(today - timedelta(days=i)) for i in range(6, -1, -1)]
+
+        labels = [d.strftime("%d/%m") for d in last_7_days]
+        values_total = []
+        values_count = []
+
+        for day in last_7_days:
+            day_end = timezone.make_aware(
+                timezone.datetime.combine(day, timezone.datetime.max.time())
+            )
+
+            # Pega o último registro até o final do dia
+            last_record = CarInventory.objects.filter(created_at__lte=day_end).order_by('-created_at').first()
+
+            if last_record:
+                values_total.append(last_record.cars_value)
+                values_count.append(last_record.cars_count)  # supondo que exista esse campo
+            else:
+                values_total.append(0)
+                values_count.append(0)
+
+        context = {
+            "last_7_days": labels,
+            "x_values1": values_total,  # valor total acumulado (último do dia)
+            "x_values2": values_count,  # quantidade de carros acumulada
+        }
+
+        return render(request, template_name='car_graph.html', context=context)
+
+
+
