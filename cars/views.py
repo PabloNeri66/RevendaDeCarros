@@ -79,6 +79,13 @@ class CarDeleteView(DeleteView):
 
 
 class CarGraphView(View):
+    """ VIEW DE GRAFICO QUE APRESENTA:
+    
+    Valores de Operacao dos Carros;
+    
+    Quantidade Operacional dos Carros;
+
+    """
     def get(self, request, **kwargs):
 
         today = timezone.now().date()
