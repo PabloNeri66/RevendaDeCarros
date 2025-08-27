@@ -2,7 +2,7 @@ APP de Revenda de Carros
 
 
 
-# Django Master - APP/API de Carros Revenda
+# Django Master - Carros Revenda
 
 Este é um projeto Django para cadastro, listagem, edição e exclusão de carros, com autenticação de usuários e integração com a API da OpenAI, monitoramento com logger, criado para Gerenciamento e Revenda de carros relíquia.
 
@@ -67,4 +67,5 @@ Este é um projeto Django para cadastro, listagem, edição e exclusão de carro
 ## Licença
 
 Este projeto é apenas para fins educacionais e de demonstração. Não é destinado a uso em produção.
+
 
