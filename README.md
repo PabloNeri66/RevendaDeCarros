@@ -69,3 +69,8 @@ Este é um projeto Django para cadastro, listagem, edição e exclusão de carro
 Este projeto é apenas para fins educacionais e de demonstração. Não é destinado a uso em produção.
 
 
+
+<img width="1366" height="642" alt="image" src="https://github.com/user-attachments/assets/694f604d-8e09-4a14-a669-85bd21bfac1b" />
+<img width="1366" height="642" alt="image" src="https://github.com/user-attachments/assets/6422c622-8563-4e61-9794-a074ef08c501" />
+<img width="1366" height="642" alt="image" src="https://github.com/user-attachments/assets/282554a5-8b34-4809-9441-ae201fbf4a79" />
+
